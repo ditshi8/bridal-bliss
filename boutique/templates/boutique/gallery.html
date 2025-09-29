@@ -1,0 +1,69 @@
+{% extends 'boutique/base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Notre Galerie</h1>
+        <p>Découvrez notre collection exclusive</p>
+    </div>
+</section>
+
+<!-- Filtres par catégorie -->
+<section class="gallery-filters">
+    <div class="container">
+        <div class="filter-buttons">
+            <a href="{% url 'gallery' %}" class="filter-btn {% if not categorie_actuelle %}active{% endif %}">
+                Tous
+            </a>
+            {% for categorie_id, categorie_nom in categories %}
+            <a href="{% url 'gallery' %}?categorie={{ categorie_id }}" 
+               class="filter-btn {% if categorie_actuelle == categorie_id %}active{% endif %}">
+                {{ categorie_nom }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Galerie d'articles -->
+<section class="gallery-grid">
+    <div class="container">
+        <div class="masonry-grid">
+            {% for article in articles %}
+            <div class="gallery-item" data-aos="zoom-in" data-category="{{ article.categorie }}">
+                <div class="gallery-card">
+                    <div class="gallery-image">
+                        <img src="{{ article.image_principale.url }}" alt="{{ article.nom }}">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <h4>{{ article.nom }}</h4>
+                                <p class="price">{{ article.prix }} €</p>
+                                <p class="description">{{ article.description|truncatewords:15 }}</p>
+                                <div class="action-buttons">
+                                    <button class="btn-info" data-id="{{ article.id }}">
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                    <a href="https://wa.me/{{ contact_info.whatsapp }}?text=Je suis intéressé par: {{ article.nom }}" 
+                                       class="btn-whatsapp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>{{ article.nom }}</h3>
+                        <span class="category">{{ article.get_categorie_display }}</span>
+                        <span class="price">{{ article.prix }} €</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-items">
+                <p>Aucun article disponible dans cette catégorie pour le moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

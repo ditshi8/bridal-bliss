@@ -1,0 +1,30 @@
+# Django
+*.pyc
+*__pycache__/
+db.sqlite3
+migrations/
+
+# Environnement virtuel
+bridal_env/
+venv/
+env/
+
+# Fichiers de configuration sensibles
+.env
+*.env.local
+*.env.*.local
+
+# Fichiers de sauvegarde
+*.backup
+*.bak
+
+# Fichiers de cache
+.cache
+.pytest_cache
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de déploiement
+*.log

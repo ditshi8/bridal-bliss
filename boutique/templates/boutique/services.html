@@ -1,0 +1,55 @@
+{% extends 'boutique/base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Nos Services</h1>
+        <p>Découvrez l'ensemble de nos prestations pour votre mariage</p>
+    </div>
+</section>
+
+<section class="services-detail">
+    <div class="container">
+        <div class="services-container">
+            {% for service in services %}
+            <div class="service-detail-card" data-aos="fade-up">
+                <div class="service-image">
+                    <img src="{{ service.image.url }}" alt="{{ service.nom }}">
+                </div>
+                <div class="service-content">
+                    <h3>{{ service.nom }}</h3>
+                    <p class="service-type">{{ service.get_type_service_display }}</p>
+                    <p class="service-description">{{ service.description }}</p>
+                    {% if service.prix_depart %}
+                    <p class="service-price">À partir de {{ service.prix_depart }} €</p>
+                    {% endif %}
+                    <div class="service-features">
+                        <span class="feature-tag">Sur mesure</span>
+                        <span class="feature-tag">Essayage gratuit</span>
+                        <span class="feature-tag">Conseil expert</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="service-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Vous avez des questions sur nos services?</h2>
+            <p>Notre équipe est à votre disposition pour vous conseiller</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/{{ contact_info.whatsapp }}" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Nous contacter sur WhatsApp
+                </a>
+                <a href="tel:{{ contact_info.telephone }}" class="phone-btn">
+                    <i class="fas fa-phone"></i> Appeler maintenant
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

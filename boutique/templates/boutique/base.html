@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDAL BLISS - Votre rêve de mariage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'boutique/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'boutique/css/modern-effects.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="{% url 'index' %}">BRIDAL BLISS</a>
+            </div>
+            <div class="nav-menu">
+                <a href="{% url 'index' %}" class="nav-link">Accueil</a>
+                <a href="{% url 'services' %}" class="nav-link">Services</a>
+                <a href="{% url 'gallery' %}" class="nav-link">Galerie</a>
+                <a href="{% url 'about' %}" class="nav-link">À propos</a>
+                <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BRIDAL BLISS</h3>
+                <p>Votre partenaire de confiance pour le plus beau jour de votre vie.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                {% if contact_info %}
+                <p><i class="fas fa-phone"></i> {{ contact_info.telephone }}</p>
+                <p><i class="fab fa-whatsapp"></i> {{ contact_info.whatsapp }}</p>
+                <p><i class="fas fa-envelope"></i> {{ contact_info.email }}</p>
+                {% endif %}
+            </div>
+            <div class="footer-section">
+                <h4>Adresse</h4>
+                {% if contact_info %}
+                <p><i class="fas fa-map-marker-alt"></i> {{ contact_info.adresse }}</p>
+                <p><i class="fas fa-clock"></i> {{ contact_info.horaires_ouverture }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BRIDAL BLISS. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'boutique/js/main.js' %}"></script>
+    <script src="{% static 'boutique/js/animations.js' %}"></script>
+</body>
+</html>

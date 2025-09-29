@@ -1,0 +1,65 @@
+{% extends 'boutique/base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">BRIDAL BLISS</h1>
+        <p class="hero-subtitle">Votre rêve de mariage commence ici</p>
+        <a href="{% url 'gallery' %}" class="cta-button">Découvrir notre collection</a>
+    </div>
+    <div class="hero-overlay"></div>
+</section>
+
+<!-- Services Section -->
+<section class="services-preview">
+    <div class="container">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-{{ service.icon }}"></i>
+                </div>
+                <h3>{{ service.nom }}</h3>
+                <p>{{ service.description|truncatewords:20 }}</p>
+                <a href="{% url 'services' %}" class="service-link">En savoir plus</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section class="featured-products">
+    <div class="container">
+        <h2 class="section-title">Articles Populaires</h2>
+        <div class="products-grid">
+            {% for article in articles_populaires %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ article.image_principale.url }}" alt="{{ article.nom }}">
+                    <div class="product-overlay">
+                        <button class="view-details" data-id="{{ article.id }}">Voir détails</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>{{ article.nom }}</h3>
+                    <p class="product-price">{{ article.prix }} €</p>
+                    <span class="product-category">{{ article.get_categorie_display }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="contact-cta">
+    <div class="container">
+        <h2>Prêt pour votre grand jour?</h2>
+        <p>Contactez-nous pour un rendez-vous personnalisé</p>
+        <a href="{% url 'contact' %}" class="cta-button">Prendre rendez-vous</a>
+    </div>
+</section>
+{% endblock %}

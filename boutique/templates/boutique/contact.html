@@ -1,0 +1,106 @@
+{% extends 'boutique/base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Contactez-nous</h1>
+        <p>Nous sommes à votre écoute pour réaliser vos rêves</p>
+    </div>
+</section>
+
+<section class="contact-content">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Informations de contact -->
+            <div class="contact-info" data-aos="fade-right">
+                <h2>Prendre rendez-vous</h2>
+                <p>Venez découvrir notre collection en boutique</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Adresse</h3>
+                            <p>{{ contact_info.adresse }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Téléphone</h3>
+                            <p>{{ contact_info.telephone }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>WhatsApp</h3>
+                            <p>{{ contact_info.whatsapp }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Email</h3>
+                            <p>{{ contact_info.email }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Horaires</h3>
+                            <p>{{ contact_info.horaires_ouverture }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte et actions rapides -->
+            <div class="contact-actions" data-aos="fade-left">
+                <div class="action-cards">
+                    <a href="https://wa.me/{{ contact_info.whatsapp }}" class="action-card whatsapp-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>Message WhatsApp</h3>
+                        <p>Contact rapide et direct</p>
+                    </a>
+                    
+                    <a href="tel:{{ contact_info.telephone }}" class="action-card phone-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Appel téléphonique</h3>
+                        <p>Parlez avec notre équipe</p>
+                    </a>
+                    
+                    <a href="mailto:{{ contact_info.email }}" class="action-card email-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>Envoyez-nous un message</p>
+                    </a>
+                </div>
+                
+                <!-- Carte Google Maps (à personnaliser avec votre adresse) -->
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>Carte Google Maps</p>
+                        <small>Votre adresse: {{ contact_info.adresse }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
